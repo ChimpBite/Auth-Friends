@@ -12,7 +12,7 @@ const validationSchema = Yup.object({
 });
 
 const Login = props => {
-  // setting formik initial value
+  // setting formik initial values
   const formik = useFormik({
     initialValues: {
       username: '',

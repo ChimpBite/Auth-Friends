@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+
 import axios from 'axios';
 
 import { authLogOut } from '../../auth/AuthLogOut';
@@ -44,31 +45,27 @@ export class FriendsList extends Component {
       });
   };
 
-  handleChange = e => {
-    this.setState({ ...this.state, [e.target.name]: e.target.value });
-  };
+  handleSubmit = event => {
+    event.preventDefault();
 
-  handleSubmit = e => {
-    e.preventDefault();
-    axios
-      .post('http://localhost:5000/api/friends', {
-        id: new Date(),
+    authLogOut()
+      .post('/friends', {
         name: this.state.name,
         age: this.state.age,
         email: this.state.email,
       })
       .then(res => {
-        console.log(res.data);
+        console.log('Friends', res.data);
+        this.setState({
+          friends: res.data,
+        });
       })
       .catch(err => {
         console.log(err);
       });
-    // const newFriend = {
-    //   id: Date.now(),
-    //   name: this.state.name,
-    //   age: this.state.age,
-    //   email: this.state.email,
-    // };
+  };
+  handleChange = e => {
+    this.setState({ ...this.state, [e.target.name]: e.target.value });
   };
 
   render() {
@@ -124,7 +121,6 @@ export class FriendsList extends Component {
                 value={this.state.email}
               />
             </div>
-
             <button onClick={e => this.handleSubmit(e)}>Submit Friend</button>
           </form>
         </Box>
