@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Link } from 'react-router-dom';
 
-import { authLogOut } from '../../auth/AuthLogOut';
+import { auth } from '../../auth/Auth';
 
 import Container from '@material-ui/core/Container';
 import Box from '@material-ui/core/Box';
@@ -11,7 +11,7 @@ import './Header.scss';
 
 const Header = () => {
   const logout = () => {
-    authLogOut()
+    auth()
       .post('/login')
       .then(res => {
         localStorage.removeItem('token');

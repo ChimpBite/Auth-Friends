@@ -1,8 +1,6 @@
 import React, { Component } from 'react';
 
-import axios from 'axios';
-
-import { authLogOut } from '../../auth/AuthLogOut';
+import { auth } from '../../auth/Auth';
 
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -32,7 +30,7 @@ export class FriendsList extends Component {
   }
 
   getData = () => {
-    authLogOut()
+    auth()
       .get('/friends')
       .then(res => {
         console.log('Friends', res.data);
@@ -48,7 +46,7 @@ export class FriendsList extends Component {
   handleSubmit = event => {
     event.preventDefault();
 
-    authLogOut()
+    auth()
       .post('/friends', {
         name: this.state.name,
         age: this.state.age,

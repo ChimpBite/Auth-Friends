@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export const authLogOut = () => {
+export const auth = () => {
   const token = localStorage.getItem('token');
 
   return axios.create({
